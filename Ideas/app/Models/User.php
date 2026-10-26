@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Comment;
+use App\Models\Idea;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -30,11 +33,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function comments():HasMany{
-    return $this->hasMany(Comment::class);
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 
-    public function ideas():HasMany{
+    public function ideas(): HasMany
+    {
         return $this->hasMany(Idea::class);
     }
 }
